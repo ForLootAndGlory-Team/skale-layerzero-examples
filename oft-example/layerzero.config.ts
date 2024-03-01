@@ -13,7 +13,7 @@ const fantomContract = {
 
 const mumbaiContract = {
     eid: EndpointId.POLYGON_V2_TESTNET,
-    contractName: 'MyOFT',
+    contractName: 'MyOFTAdapter',
 }
 
 const skaleContract = {
