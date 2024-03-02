@@ -48,11 +48,25 @@ export async function bridgeTokens(signer, amount, endId) {
     const contractAddress = contractMumbai;
     const contractABI = TokenABI // L'ABI de votre contrat
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
+    const sendParams = {
+        dstEid: endId,
+        to: ethers.toBeHex(signer.address, 32),
+        amountLD: ethers.parseUnits(amount.toString(), "ether"),
+        minAmountLD: ethers.parseUnits(amount.toString(), "ether"),
+        extraOptions: "0x",
+        composeMsg: "0x",
+        oftCmd: "0x"
+    };
+    console.log("sendParams", sendParams);
+    const msgFee = {
+        nativeFee: 0n,
+        lzTokenFee: 0n,
+    }
     try {
-        const tx = await contract.bridgeTokens(ethers.parseUnits(amount, "ether"), 0, endId);
-        await tx.wait();
-        console.log("Bridge réussi");
+        const quote = await contract.quoteOFT(sendParams);
+        console.log("Quote : ", quote.oftFeeDetails);
+        const tx = await contract.send(sendParams, msgFee, signer.address);
+        console.log("Bridge : ", tx);
     } catch (error) {
         console.error("Erreur lors du bridge: ", error);
     }
