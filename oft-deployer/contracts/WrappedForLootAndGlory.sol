@@ -11,7 +11,7 @@ contract WrappedForLootAndGlory is OFTAdapter {
         address _owner // token owner used as a delegate in LayerZero Endpoint
     ) OFTAdapter(_token, _layerZeroEndpoint, _owner) Ownable(_owner) {}
 
-    function debit(uint256 _amountLD, uint256 _minAmountLD, uint32 _dstEid) external {
-        _debit(_amountLD, _minAmountLD, _dstEid);
+    function bridgeTokens(uint256 amountLD, uint256 minAmountLD, uint32 dstEid) external returns (uint256, uint256) {
+        return _debit(amountLD, minAmountLD, dstEid);
     }
 }

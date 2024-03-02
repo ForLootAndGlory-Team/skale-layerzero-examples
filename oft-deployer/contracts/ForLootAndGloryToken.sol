@@ -11,4 +11,8 @@ contract ForLootAndGloryToken is OFT {
         address _lzEndpoint,
         address _delegate
     ) OFT(_name, _symbol, _lzEndpoint, _delegate) Ownable(_delegate) {}
+
+    function bridgeTokens(uint256 amountLD, uint256 minAmountLD, uint32 dstEid) external returns (uint256, uint256) {
+        return _debit(amountLD, minAmountLD, dstEid);
+    }
 }
