@@ -1,20 +1,13 @@
-// Get the environment configuration from .env file
-//
-// To make use of automatic environment setup:
-// - Duplicate .env.example file and name it .env
-// - Fill in the environment variables
 import 'dotenv/config'
-
 import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
-
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 // Set your preferred authentication method
-//
+
 // If you prefer using a mnemonic, set a MNEMONIC environment variable
 // to a valid mnemonic
 const MNEMONIC = process.env.MNEMONIC

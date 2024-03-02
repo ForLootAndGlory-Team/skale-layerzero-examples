@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { OFT } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oft/OFT.sol";
 
-contract MyOFT is OFT {
+contract ForLootAndGloryToken is OFT {
     constructor(
         string memory _name,
         string memory _symbol,

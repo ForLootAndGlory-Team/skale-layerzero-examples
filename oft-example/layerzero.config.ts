@@ -3,22 +3,22 @@ import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 const celoContract = {
     eid: EndpointId.CELO_V2_TESTNET,
-    contractName: 'MyOFT',
+    contractName: 'ForLootAndGloryToken',
 }
 
 const fantomContract = {
     eid: EndpointId.FANTOM_V2_TESTNET,
-    contractName: 'MyOFT',
+    contractName: 'ForLootAndGloryToken',
 }
 
 const mumbaiContract = {
     eid: EndpointId.POLYGON_V2_TESTNET,
-    contractName: 'MyOFTAdapter',
+    contractName: 'WrappedForLootAndGlory',
 }
 
 const skaleContract = {
     eid: EndpointId.SKALE_V2_TESTNET,
-    contractName: 'MyOFT'
+    contractName: 'ForLootAndGloryToken'
 }
 
 export default {
