@@ -3,7 +3,7 @@ import { type DeployFunction } from 'hardhat-deploy/types'
 
 const contractNameEuropa = 'ForLootAndGloryToken'
 const contractNameMumbai = 'WrappedForLootAndGlory'
-const existingContractAddress = '0x9508790fE6733EFD376fc43b7b59b740AefC3173'
+const existingContractAddress = '0x7bBbAb1F58FdCC2dC32C6fC4faC210fD7E4BEA56'
 const deploy: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre
     const { deploy } = deployments

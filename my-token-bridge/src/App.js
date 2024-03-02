@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-import { bridgeTokens, connectWallet } from './web3/web3';
+import { approveTokens, bridgeTokens, connectWallet, listenForBridgeCompletion } from './web3/web3';
 import BridgeForm from './components/BridgeForm';
 import img from './mHeading.png';
 
 function App() {
   const [signer, setSigner] = useState(null);
   const chains = [
-    { id: 80001, name: "Mumbai" },
-    { id: 1444673419, name: "Europa" },
+    { id: 80001, name: "Mumbai", endpointId: 40109},
+    { id: 1444673419, name: "Europa", endpointId: 40254 },
   ];
 
   const handleConnect = async () => {
@@ -16,12 +16,15 @@ function App() {
     setSigner(signer);
   };
 
-  const handleBridge = async (amount, sendChain, receiveChain) => {
+  const handleBridge = async (amount, endpointId) => {
     if (!signer) {
       console.log("Wallet non connecté");
       return;
     }
-    await bridgeTokens(signer, amount, sendChain, receiveChain);
+    console.log("Bridge", amount, endpointId);
+    await approveTokens(signer, amount);
+    await bridgeTokens(signer, amount, endpointId);
+    listenForBridgeCompletion(signer.address);
   };
 
   return (
