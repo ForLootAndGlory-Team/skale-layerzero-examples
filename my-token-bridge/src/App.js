@@ -22,7 +22,7 @@ function App() {
       return;
     }
     console.log("Bridge", amount, endpointId);
-    //await approveTokens(signer, amount);
+    await approveTokens(signer, amount);
     await bridgeTokens(signer, amount, endpointId);
     listenForBridgeCompletion(signer.address);
   };

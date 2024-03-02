@@ -45,9 +45,15 @@ export function listenForBridgeCompletion(userAddress) {
 }
 
 export async function bridgeTokens(signer, amount, endId) {
-    const contractAddress = contractMumbai;
+    const chains = [
+        { id: 80001, name: "Mumbai", endpointId: 40109 },
+        { id: 1444673419, name: "Europa", endpointId: 40254 },
+    ];
+
+    const contractSender = endId === chains[0].endpointId ? contractMumbai : contractEuropa;
+    const contractReceiver = endId === chains[0].endpointId ? contractEuropa : contractMumbai;
     const contractABI = TokenABI // L'ABI de votre contrat
-    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+    const contract = new ethers.Contract(contractSender, contractABI, signer);
     const sendParams = {
         dstEid: endId,
         to: ethers.toBeHex(signer.address, 32),
@@ -63,9 +69,12 @@ export async function bridgeTokens(signer, amount, endId) {
         lzTokenFee: 0n,
     }
     try {
-        const quote = await contract.quoteOFT(sendParams);
-        console.log("Quote : ", quote.oftFeeDetails);
-        const tx = await contract.send(sendParams, msgFee, signer.address);
+        // console.log("check peer : ", endId, ethers.toBeHex(contractReceiver, 32));
+        // const isPeer = await contract.isPeer(endId, ethers.toBeHex(contractReceiver, 32));
+        // console.log("Is peer : ", isPeer);
+        const [quote] = await contract.quoteOFT(sendParams);
+        console.log("Quote : ", [quote]);
+        const tx = await contract.send(sendParams, [quote, 0], signer.address, { value: quote });
         console.log("Bridge : ", tx);
     } catch (error) {
         console.error("Erreur lors du bridge: ", error);
