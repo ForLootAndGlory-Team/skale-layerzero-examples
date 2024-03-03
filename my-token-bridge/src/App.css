@@ -1,74 +1,58 @@
-/* App.css */
-
-body, html {
-  height: 100%;
+body {
   margin: 0;
   padding: 0;
-  background: #000000;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: black; /* Fond noir pour tout le corps du document */
+  color: white; /* Changez la couleur du texte pour améliorer la lisibilité */
 }
 
-#root {
-  height: 100%;
-}
 
 .App {
-  display: flex;
-  flex-direction: column; /* Organise les enfants verticalement */
-  justify-content: flex-start; /* Aligner les enfants au début du conteneur */
-  align-items: center; /* Centrer les enfants horizontalement */
-  height: 100%;
-  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  background-color: black; /* Fond noir pour toute l'application */
+  color: white; /* Changez la couleur du texte pour améliorer la lisibilité */
+  min-height: 100vh; /* Assurez-vous que le fond noir couvre toute la hauteur */
 }
 
-.image-container {
-  display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center; /* Centrer verticalement */
-  width: 100%; /* Prend toute la largeur disponible */
-  max-width: 600px; /* ou une autre valeur qui correspond à la largeur maximale souhaitée */
-  height: auto; /* Hauteur auto pour s'adapter au contenu */
-  margin-top: 2vh;
-  z-index: 0;
-}
 
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
 
 .bridge-form {
-  z-index: 1; /* Assurez-vous que le formulaire est au-dessus de l'image */
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 320px;
-  margin-top: -5vh; /* Ajustez la marge pour que le formulaire chevauche l'image si nécessaire */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-button,
-input,
-select {
-  height: 40px;
-  /* Hauteur uniforme pour les éléments du formulaire */
-  margin: 5px 0;
-  /* Réduit l'espace entre les éléments */
+.bridge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-button {
-  background-color: #000000;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-input,
-select {
-  width: 100%;
+.bridge-box input,
+.bridge-box button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 200px; /* Ajustez selon la largeur souhaitée */
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+.bridge-box button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.bridge-box button:disabled {
+  background-color: #ccc;
+}
+
+.bridge-box p {
+  margin: 10px 0;
 }

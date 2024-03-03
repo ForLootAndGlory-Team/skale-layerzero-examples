@@ -3,9 +3,9 @@ import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
-import { Contract, ContractFactory, utils } from "ethers";
+import { utils } from "ethers";
 import { Options } from "@layerzerolabs/lz-v2-utilities";
-import { EndpointId } from '@layerzerolabs/lz-definitions'
+import { EndpointId } from '@layerzerolabs/lz-definitions';
 
 async function main() {
     // Charger ou déployer vos contrats ici. Pour cet exemple, nous allons simplement charger des contrats déjà déployés.
@@ -29,7 +29,7 @@ async function main() {
 
     // Préparer les paramètres pour le transfert.
     const tokensToSend = utils.parseEther("1");
-    const destinationChainId =  EndpointId.SKALE_V2_TESTNET
+    const destinationChainId = EndpointId.SKALE_V2_TESTNET
     const destinationAddress = owner.address; // Adresse de destination sur la chaîne B.
 
     // Construction des options de message.
