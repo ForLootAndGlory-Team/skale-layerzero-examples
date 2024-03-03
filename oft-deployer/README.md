@@ -1,3 +1,8 @@
+Pour mettre à jour la documentation avec les commandes spécifiques que vous avez mentionnées et intégrer les éléments fournis, voici comment vous pourriez structurer les ajouts dans votre fichier README.md. Cette mise à jour comprend l'ajout de commandes pour le déploiement et l'interaction avec les contrats sur les réseaux testnet, ainsi que des modifications et des ajouts pour clarifier l'utilisation des commandes et des outils de développement.
+
+---
+
+```markdown
 <p align="center">
   <a href="https://layerzero.network">
     <img alt="LayerZero" style="max-width: 500px" src="https://d3a2dpnnrypp5h.cloudfront.net/bridge-app/lz.png"/>
@@ -18,7 +23,7 @@
 
 ## 1) Developing Contracts
 
-#### Installing dependencies
+### Installing dependencies
 
 We recommend using `pnpm` as a package manager (but you can of course use a package manager of your choice):
 
@@ -26,9 +31,9 @@ We recommend using `pnpm` as a package manager (but you can of course use a pack
 pnpm install
 ```
 
-#### Compiling your contracts
+### Compiling your contracts
 
-This project supports both `hardhat` and `forge` compilation. By default, the `compile` command will execute both:
+This project supports both `hardhat` and `forge` for compilation. By default, the `compile` command will execute both:
 
 ```bash
 pnpm compile
@@ -50,7 +55,7 @@ Or adjust the `package.json` to for example remove `forge` build:
 + "compile": "hardhat compile"
 ```
 
-#### Running tests
+### Running tests
 
 Similarly to the contract compilation, we support both `hardhat` and `forge` tests. By default, the `test` command will execute both:
 
@@ -74,12 +79,12 @@ Or adjust the `package.json` to for example remove `hardhat` tests:
 + "test": "forge test"
 ```
 
-## 2) Deploying Contracts
+## 2) Deploying and Interacting with Contracts
 
-Set up deployer wallet/account:
+### Setting up deployer wallet/account
 
-- Rename `.env.example` -> `.env`
-- Choose your preferred means of setting up your deployer wallet/account:
+- Rename `.env.example` to `.env`
+- Choose your preferred method for setting up your deployer wallet/account:
 
 ```
 MNEMONIC="test test test test test test test test test test test junk"
@@ -87,15 +92,36 @@ or...
 PRIVATE_KEY="0xabc...def"
 ```
 
-- Fund this address with the corresponding chain's native tokens you want to deploy to.
+- Ensure this address is funded with the native tokens of the chain you wish to deploy to.
 
-To deploy your contracts to your desired blockchains, run the following command in your project's folder:
+### Deploying Contracts
+
+To deploy your contracts to your desired blockchains, run the following command:
 
 ```bash
 npx hardhat lz:deploy
 ```
 
-More information about available CLI arguments can be found using the `--help` flag:
+### Setting Peers and Bridging Tokens
+
+After deploying, set up the peer contracts on different networks and bridge tokens using the following commands:
+
+```bash
+# Setting peer on Mumbai network
+npx hardhat run ./scripts/peerMumbai.ts --network mumbai
+
+# Setting peer on Europa network
+npx hardhat run ./scripts/peerEuropa.ts --network europa
+
+# Bridging tokens from Contract A to Contract B on Mumbai network
+npx hardhat run ./scripts/bridge.ts --network mumbai
+```
+
+Note: You might encounter warnings about `
+
+bigint` bindings. These can usually be ignored for testnet interactions, but ensure your environment supports `bigint` for production deployments.
+
+For more detailed CLI arguments and options:
 
 ```bash
 npx hardhat lz:deploy --help

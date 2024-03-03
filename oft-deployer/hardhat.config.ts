@@ -42,16 +42,6 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
-        celo: {
-            eid: EndpointId.ARBITRUM_TESTNET,
-            url: 'https://celo-alfajores.infura.io/v3/768fc166c44e4505a858c8bfa754a4b3',
-            accounts,
-        },
-        fantom: {
-            eid: EndpointId.FANTOM_V2_TESTNET,
-            url: 'https://fantom.api.onfinality.io/public',
-            accounts,
-        },
         mumbai: {
             eid: EndpointId.POLYGON_V2_TESTNET,
             url: 'https://polygon-mumbai.infura.io/v3/768fc166c44e4505a858c8bfa754a4b3',
