@@ -1,0 +1,1 @@
+const REQUIRED_CHAIN_ID = "0x13881";

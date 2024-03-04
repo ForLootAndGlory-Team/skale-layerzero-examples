@@ -1,5 +1,4 @@
 import { ethers } from 'ethers';
-import WTokenABI from "./WrappedForLootAndGloryABI.json";
 import TokenABI from "./ForLootAndGloryTokenABI.json";
 import { Options } from "@layerzerolabs/lz-v2-utilities";
 import { EndpointId } from '@layerzerolabs/lz-definitions';
@@ -60,7 +59,7 @@ export async function switchChain() {
 
 // Fonction de pontage des tokens
 export async function bridgeTokens(signer, sendParams, nativeFees) {
-    const contract = new ethers.Contract(contractMumbai, WTokenABI, signer);
+    const contract = new ethers.Contract(contractMumbai, TokenABI, signer);
     try {
         const tx = await contract.send(sendParams, [ethers.parseEther(nativeFees), 0], signer.address, { value: ethers.parseEther(nativeFees) });
         await tx.wait();
@@ -73,7 +72,7 @@ export async function bridgeTokens(signer, sendParams, nativeFees) {
 
 // Obtenir une estimation des frais pour le pontage
 export async function quoteSend(signer, amount) {
-    const contract = new ethers.Contract(contractMumbai, WTokenABI, signer);
+    const contract = new ethers.Contract(contractMumbai, TokenABI, signer);
     const options = Options.newOptions().addExecutorLzReceiveOption(200000, 0).toHex();
 
     const sendParams = [
@@ -104,9 +103,15 @@ export async function approveTokens(signer, amount) {
     }
 }
 
+export async function isApproved(signer, amount) {
+    const contract = new ethers.Contract(existingTokenMumbai, TokenABI, signer);
+    const approvedAmount = await contract.allowance( signer.address, contractMumbai);
+    return approvedAmount >= ethers.parseUnits(amount, "ether");
+}
+
 // Obtenir le solde du token de l'utilisateur
 export async function getTokenBalance(signer) {
     const contract = new ethers.Contract(existingTokenMumbai, TokenABI, signer);
-    const balance = await contract.balanceOf(await signer.getAddress());
+    const balance = await contract.balanceOf(signer.address);
     return ethers.formatEther(balance);
 }

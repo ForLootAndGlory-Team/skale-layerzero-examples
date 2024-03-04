@@ -19,27 +19,30 @@ body {
   max-width: 100%;
   height: auto;
 }
-
 .bridge-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px; /* Réduit l'espace au-dessus du formulaire */
 }
 
 .bridge-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: white;
+  border: 1px solid #d0d0d0; /* Couleur de bordure subtile */
+  border-radius: 5px; /* Coins légèrement arrondis */
+  padding: 15px; /* Espace intérieur réduit */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Ombre plus subtile */
+  width: 80%;
+  max-width: 400px; /* Largeur maximale réduite pour un aspect plus compact */
 }
 
 .bridge-box input,
 .bridge-box button {
-  margin: 10px 0;
-  padding: 10px;
-  width: 200px; /* Ajustez selon la largeur souhaitée */
+  margin: 8px 0; /* Réduit l'espace vertical entre les éléments */
+  padding: 8px; /* Padding intérieur réduit */
+  width: calc(100% - 16px); /* Ajuste la largeur pour correspondre au nouveau padding */
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px; /* Coins légèrement arrondis */
 }
 
 .bridge-box button {
@@ -50,9 +53,9 @@ body {
 }
 
 .bridge-box button:disabled {
-  background-color: #ccc;
+  background-color: #aaa; /* Couleur plus foncée pour le bouton désactivé */
 }
 
 .bridge-box p {
-  margin: 10px 0;
+  margin: 8px 0; /* Réduit l'espace autour des paragraphes */
 }

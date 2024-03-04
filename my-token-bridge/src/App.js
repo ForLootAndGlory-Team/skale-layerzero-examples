@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { approveTokens, bridgeTokens, checkCurrentChain, connectWallet, quoteSend, switchChain } from './web3/web3';
+import { approveTokens, bridgeTokens, checkCurrentChain, connectWallet, getTokenBalance, isApproved, quoteSend, switchChain } from './web3/web3';
 import img from './mHeading.png';
 import TokenABI from "./web3/ForLootAndGloryTokenABI.json";
 import { ethers } from 'ethers';
@@ -8,11 +8,44 @@ import { ethers } from 'ethers';
 function App() {
   const [signer, setSigner] = useState(null);
   const [amount, setAmount] = useState('');
-  const [isApproved, setIsApproved] = useState(false);
+  const [isApprove, setIsApproved] = useState(false);
   const [sendParamsFee, setSendParamsFee] = useState({});
   const [isBridging, setIsBridging] = useState(false);
   const [bridgeSuccess, setBridgeSuccess] = useState(false);
+  const [tokenBalance, setTokenBalance] = useState(0);
   const contractEuropa = "0x8a81F441ca4383beB6D1161504dEE0b0a7Af47bb";
+
+  useEffect(() => {
+    // Fonction pour estimer les frais de gas
+    const fetchGasEstimate = async () => {
+      if (signer && amount > 0) {
+        try {
+          const fees = await quoteSend(signer, amount);
+          setSendParamsFee(fees);
+          const isApprove = await isApproved(signer, amount);
+          setIsApproved(isApprove);
+          const balance = await getTokenBalance(signer);
+          setTokenBalance(balance);
+        } catch (error) {
+          console.error("Erreur lors de l'estimation des frais de gas:", error);
+          // Gérer l'erreur, par exemple en réinitialisant l'estimation des frais
+          setSendParamsFee({});
+        }
+      }
+    };
+
+    fetchGasEstimate();
+  }, [amount, signer]);
+
+  useEffect(() => {
+    const walletAddress = localStorage.getItem('walletAddress');
+    if (walletAddress) {
+      // Logique pour gérer un portefeuille déjà connecté
+      // Par exemple, instancier un nouveau signer avec ethers.js si nécessaire
+      console.log(`Portefeuille trouvé : ${walletAddress}`);
+      // Mettre à jour l'état ou l'UI ici en conséquence
+    }
+  }, []);
 
   function listenForBridgeCompletion(userAddress) {
     // Assurez-vous d'utiliser le bon provider et l'adresse du contrat
@@ -36,14 +69,19 @@ function App() {
     if (!isCorrectChain) {
       const didSwitch = await switchChain();
       if (didSwitch) {
+        const address = await signer.getAddress();
+        localStorage.setItem('walletAddress', address); // Stocke l'adresse dans localStorage
         setSigner(signer);
       } else {
         console.log("L'utilisateur n'a pas changé de chaîne.");
       }
     } else {
+      const address = await signer.getAddress();
+      localStorage.setItem('walletAddress', address); // Stocke l'adresse dans localStorage
       setSigner(signer);
     }
   };
+
 
 
   const handleApprove = async () => {
@@ -53,15 +91,6 @@ function App() {
     }
     const success = await approveTokens(signer, amount);
     setIsApproved(success);
-  };
-
-  const handleQuoteSend = async () => {
-    if (!signer || !amount) {
-      console.log("Wallet not connected or amount is not set");
-      return;
-    }
-    const fees = await quoteSend(signer, amount);
-    setSendParamsFee(fees);
   };
 
   const handleBridge = async () => {
@@ -81,20 +110,26 @@ function App() {
         <img src={img} alt="For Loot & Glory" />
       </div>
       <div className="bridge-form">
-        <button onClick={handleConnect}>Connect Wallet</button>
+        {signer ? (
+          <p>Wallet: {localStorage.getItem('walletAddress')}</p>
+        ) : (
+          <button type="button" onClick={handleConnect}>Connect Wallet</button>
+        )}
+        <p>Bridge your FLAG token from Polygon to Skale Europa Hub </p>
         <div className="bridge-box">
+          <p style={{ color: 'black' }}>Your balance: {tokenBalance} FLAG</p>
           <input
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Amount to bridge"
           />
-          <button type="button" onClick={handleApprove} disabled={!amount || amount <= 0}>Approve Tokens</button>
-          <button type="button" onClick={handleQuoteSend} disabled={!amount || amount <= 0 || !isApproved}>Estimate Gas Fee</button>
-          {sendParamsFee.nativeFees && <p>Estimated Gas Fee: {sendParamsFee.nativeFees}</p>}
+          {!isApprove &&
+            <button type="button" onClick={handleApprove} disabled={!amount || amount <= 0}>Approve Tokens</button>}
+          {sendParamsFee.nativeFees && <p style={{ color: 'black' }}>Estimated Gas Fee: {sendParamsFee.nativeFees}</p>}
           <button type="button" onClick={handleBridge} disabled={!isApproved || !sendParamsFee.nativeFees}>Bridge</button>
-          {isBridging && <p>Bridging in progress... Please wait.</p>}
-          {bridgeSuccess && <p>The bridge was successful!</p>}
+          {isBridging && <p style={{ color: 'black' }}>Bridging in progress... Please wait.</p>}
+          {bridgeSuccess && <p style={{ color: 'black' }}>The bridge was successful!</p>}
         </div>
       </div>
     </div>
