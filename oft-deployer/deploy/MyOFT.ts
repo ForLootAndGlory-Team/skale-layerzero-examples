@@ -3,7 +3,7 @@ import { type DeployFunction } from 'hardhat-deploy/types'
 
 const contractNameEuropa = 'ForLootAndGloryToken'
 const contractNameMumbai = 'WrappedForLootAndGlory'
-const existingContractAddress = '0x7bBbAb1F58FdCC2dC32C6fC4faC210fD7E4BEA56'
+const existingContractAddress = '0x9111D6446Ac5b88A84cf06425c6286658368542F'
 const deploy: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre
     const { deploy } = deployments
@@ -28,7 +28,7 @@ const deploy: DeployFunction = async (hre) => {
             gasLimit: 3_000_000
         })
         console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
-    } else if (hre.network.name === 'mumbai') {
+    } else if (hre.network.name === 'polygon') {
         contractName = contractNameMumbai
         const endpointV2Deployment = await hre.deployments.get('EndpointV2')
         const { address } = await deploy(contractName, {

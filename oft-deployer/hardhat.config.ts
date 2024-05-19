@@ -1,11 +1,10 @@
+import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
+import { EndpointId } from '@layerzerolabs/lz-definitions'
 import 'dotenv/config'
 import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
-import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
-import { EndpointId } from '@layerzerolabs/lz-definitions'
-
 // Set your preferred authentication method
 
 // If you prefer using a mnemonic, set a MNEMONIC environment variable
@@ -39,17 +38,26 @@ const config: HardhatUserConfig = {
                     },
                 },
             },
+            {
+                version: '0.8.24',
+                settings: {
+                    optimizer: {
+                        enabled: true,
+                        runs: 200,
+                    },
+                },
+            },
         ],
     },
     networks: {
-        mumbai: {
-            eid: EndpointId.POLYGON_V2_TESTNET,
-            url: 'https://polygon-mumbai.infura.io/v3/768fc166c44e4505a858c8bfa754a4b3',
+        polygon: {
+            eid: EndpointId.POLYGON_MAINNET,
+            url: 'https://polygon-rpc.com',
             accounts,
         },
         europa: {
-            eid: EndpointId.SKALE_V2_TESTNET,
-            url: "https://testnet.skalenodes.com/v1/juicy-low-small-testnet",
+            eid: EndpointId.SKALE_MAINNET,
+            url: "https://mainnet.skalenodes.com/v1/elated-tan-skat",
             accounts,
         }
     },

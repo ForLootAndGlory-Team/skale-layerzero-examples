@@ -1,33 +1,33 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
-const mumbaiContract = {
-    eid: EndpointId.POLYGON_V2_TESTNET,
+const polygonContract = {
+    eid: EndpointId.POLYGON_MAINNET,
     contractName: 'WrappedForLootAndGlory',
 }
 
-const skaleContract = {
-    eid: EndpointId.SKALE_V2_TESTNET,
+const skaleEuropaContract = {
+    eid: EndpointId.SKALE_MAINNET,
     contractName: 'ForLootAndGloryToken'
 }
 
 export default {
     contracts: [
         {
-            contract: mumbaiContract,
+            contract: polygonContract,
         },
         {
-            contract: skaleContract
+            contract: skaleEuropaContract
         }
     ],
     connections: [
         {
-            from: mumbaiContract,
-            to: skaleContract
+            from: polygonContract,
+            to: skaleEuropaContract
         },
         {
-            from: skaleContract,
-            to: mumbaiContract
+            from: skaleEuropaContract,
+            to: polygonContract
         },
     ],
 }

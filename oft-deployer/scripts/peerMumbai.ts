@@ -3,8 +3,7 @@ import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
-import { Contract, ContractFactory, utils } from "ethers";
-import { Options } from "@layerzerolabs/lz-v2-utilities";
+import { utils } from "ethers";
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 async function main() {
