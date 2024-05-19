@@ -29,7 +29,7 @@ async function main() {
 
     // Préparer les paramètres pour le transfert.
     const tokensToSend = utils.parseEther("1");
-    const destinationChainId = EndpointId.SKALE_V2_TESTNET
+    const destinationChainId = EndpointId.SKALE_MAINNET
     const destinationAddress = owner.address; // Adresse de destination sur la chaîne B.
 
     // Construction des options de message.

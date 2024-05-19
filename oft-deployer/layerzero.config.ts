@@ -11,6 +11,11 @@ const skaleEuropaContract = {
     contractName: 'ForLootAndGloryToken'
 }
 
+const arbitrumContract = {
+    eid: EndpointId.ARBITRUM_MAINNET,
+    contractName: 'ForLootAndGloryToken'
+}
+
 export default {
     contracts: [
         {
@@ -18,6 +23,9 @@ export default {
         },
         {
             contract: skaleEuropaContract
+        },
+        {
+            contract: arbitrumContract
         }
     ],
     connections: [
@@ -29,5 +37,21 @@ export default {
             from: skaleEuropaContract,
             to: polygonContract
         },
+        {
+            from: polygonContract,
+            to: arbitrumContract
+        },
+        {
+            from: arbitrumContract,
+            to: polygonContract
+        },
+        {
+            from: skaleEuropaContract,
+            to: arbitrumContract
+        },
+        {
+            from: arbitrumContract,
+            to: skaleEuropaContract
+        }
     ],
 }

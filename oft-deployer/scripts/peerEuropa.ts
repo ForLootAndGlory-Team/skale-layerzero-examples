@@ -23,7 +23,7 @@ async function main() {
     // function setPeer(uint32 _eid, bytes32 _peer)
 
     const peerAddress = utils.zeroPad(WrappedForLootAndGloryAddress, 32);
-    const peerChainId = EndpointId.POLYGON_V2_TESTNET;
+    const peerChainId = EndpointId.POLYGON_MAINNET;
 
     console.log(`Setting peer on ${peerChainId} to ${peerAddress}`);
     await ForLootAndGloryToken.setPeer(peerChainId, peerAddress);

@@ -22,7 +22,7 @@ async function main() {
     // function setPeer(uint32 _eid, bytes32 _peer)
 
     const peerAddress = utils.zeroPad(ForLootAndGloryTokenAddress, 32);
-    const peerChainId = EndpointId.SKALE_V2_TESTNET;
+    const peerChainId = EndpointId.SKALE_MAINNET;
 
     console.log(`Setting peer on ${peerChainId} to ${peerAddress}`);
     await WrappedForLootAndGlory.setPeer(peerChainId, peerAddress);
