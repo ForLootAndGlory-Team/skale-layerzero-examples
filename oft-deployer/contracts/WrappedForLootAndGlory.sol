@@ -19,7 +19,7 @@ contract WrappedForLootAndGlory is OFTAdapter {
         uint32 _dstEid
     ) internal override returns (uint256 amountSentLD, uint256 amountReceivedLD) {
         (amountSentLD, amountReceivedLD) = _debitView(_amountLD, _minAmountLD, _dstEid);
-        // @dev Lock tokens by moving them into this contract from the caller.
+        // @dev Burn tokens by moving them into this contract from the caller.
         IFLAG(address(innerToken)).burnFrom(_from, amountSentLD);
     }
 
@@ -28,7 +28,7 @@ contract WrappedForLootAndGlory is OFTAdapter {
         uint256 _amountLD,
         uint32 /*_srcEid*/
     ) internal override returns (uint256 amountReceivedLD) {
-        // @dev Unlock the tokens and transfer to the recipient.
+        // @dev Mint the tokens and transfer to the recipient.
         IFLAG(address(innerToken)).mint(_to, _amountLD);
         // @dev In the case of NON-default OFTAdapter, the amountLD MIGHT not be == amountReceivedLD.
         return _amountLD;

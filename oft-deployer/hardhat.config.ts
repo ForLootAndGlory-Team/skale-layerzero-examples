@@ -2,6 +2,7 @@ import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 import 'dotenv/config'
 import 'hardhat-deploy'
+import '@nomiclabs/hardhat-etherscan'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
@@ -17,8 +18,8 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 const accounts: HttpNetworkAccountsUserConfig | undefined = MNEMONIC
     ? { mnemonic: MNEMONIC }
     : PRIVATE_KEY
-      ? [PRIVATE_KEY]
-      : undefined
+        ? [PRIVATE_KEY]
+        : undefined
 
 if (accounts == null) {
     console.warn(
@@ -60,6 +61,10 @@ const config: HardhatUserConfig = {
             url: "https://mainnet.skalenodes.com/v1/elated-tan-skat",
             accounts,
         }
+    },
+    etherscan: {
+        // Votre clé API Etherscan
+        apiKey: process.env.POLYGONSCAN_API_KEY,
     },
     namedAccounts: {
         deployer: {
