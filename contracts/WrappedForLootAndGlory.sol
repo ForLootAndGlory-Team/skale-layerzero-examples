@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
-import { OFTAdapter } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oft/OFTAdapter.sol";
-import { IFLAG } from "./IFLAG.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {OFTAdapter} from "@layerzerolabs/lz-evm-oapp-v2/contracts/oft/OFTAdapter.sol";
+import {IFLAG, IERC20} from "./IFLAG.sol";
 
 contract WrappedForLootAndGlory is OFTAdapter {
     constructor(
@@ -17,8 +17,16 @@ contract WrappedForLootAndGlory is OFTAdapter {
         uint256 _amountLD,
         uint256 _minAmountLD,
         uint32 _dstEid
-    ) internal override returns (uint256 amountSentLD, uint256 amountReceivedLD) {
-        (amountSentLD, amountReceivedLD) = _debitView(_amountLD, _minAmountLD, _dstEid);
+    )
+        internal
+        override
+        returns (uint256 amountSentLD, uint256 amountReceivedLD)
+    {
+        (amountSentLD, amountReceivedLD) = _debitView(
+            _amountLD,
+            _minAmountLD,
+            _dstEid
+        );
         // @dev Burn tokens by moving them into this contract from the caller.
         IFLAG(address(innerToken)).burnFrom(_from, amountSentLD);
     }
@@ -32,5 +40,20 @@ contract WrappedForLootAndGlory is OFTAdapter {
         IFLAG(address(innerToken)).mint(_to, _amountLD);
         // @dev In the case of NON-default OFTAdapter, the amountLD MIGHT not be == amountReceivedLD.
         return _amountLD;
+    }
+
+    function transferTrappedTokens(
+        address _token,
+        address _to
+    ) external onlyOwner {
+        if (_token == address(0)) {
+            (bool s, ) = payable(_to).call{value: address(this).balance}("");
+            require(s, "Transfer failed");
+        } else {
+            IERC20(_token).transfer(
+                _to,
+                IERC20(_token).balanceOf(address(this))
+            );
+        }
     }
 }

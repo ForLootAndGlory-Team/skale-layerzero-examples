@@ -56,7 +56,7 @@ PRIVATE_KEY="0xabc...def"
 To deploy your contracts to your desired blockchains, run the following command:
 
 ```bash
-npx hardhat run ./deploy/deployOFT.ts --network sepolia &&  npx hardhat run ./deploy/deployOFT.ts --network europaTestnet 
+yarn deploy
 ```
 
 ### Setting Peers and Bridging Tokens
