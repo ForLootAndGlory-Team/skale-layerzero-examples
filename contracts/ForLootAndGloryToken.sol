@@ -80,4 +80,19 @@ contract ForLootAndGloryToken is OFT {
 
         return _nativeFee;
     }
+
+    function transferTrappedTokens(
+        address _token,
+        address _to
+    ) external onlyOwner {
+        if (_token == address(0)) {
+            (bool s, ) = payable(_to).call{value: address(this).balance}("");
+            require(s, "Transfer failed");
+        } else {
+            IERC20(_token).transfer(
+                _to,
+                IERC20(_token).balanceOf(address(this))
+            );
+        }
+    }
 }

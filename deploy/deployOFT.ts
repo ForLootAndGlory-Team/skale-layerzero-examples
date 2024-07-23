@@ -28,10 +28,21 @@ async function main() {
             gasLimit: 3_000_000
         })
         console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
+        console.log('verify contract')
+        await new Promise(resolve => setTimeout(resolve, 10000))
+        await hre.run("verify:verify", {
+            address,
+            constructorArguments: [
+                'ForLootAndGlory',
+                'FLAG',
+                endpointV2Deployment.address,
+                deployer,
+            ],
+        });
     } else if (hre.network.name === 'polygon') {
         contractName = contractNamePolygon
         const endpointV2Deployment = await hre.deployments.get('EndpointV2')
-        const WrappepOFTAdapter = await deploy(contractName, {
+        const {address} = await deploy(contractName, {
             from: deployer,
             args: [
                 existingContractAddress,
@@ -42,12 +53,12 @@ async function main() {
             skipIfAlreadyDeployed: true,
             gasLimit: 3_000_000
         })
-        console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${WrappepOFTAdapter.address}`)
+        console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
         // sleep 10 seconds
         console.log('verify contract')
         await new Promise(resolve => setTimeout(resolve, 10000))
         await hre.run("verify:verify", {
-            address: WrappepOFTAdapter.address,
+            address: address,
             constructorArguments: [
                 existingContractAddress,
                 endpointV2Deployment.address,

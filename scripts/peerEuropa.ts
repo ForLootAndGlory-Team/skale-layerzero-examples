@@ -10,8 +10,6 @@ async function main() {
     const ForLootAndGloryTokenFactory = await hre.ethers.getContractFactory("ForLootAndGloryToken");
     const ForLootAndGloryToken = ForLootAndGloryTokenFactory.attach(ForLootAndGloryTokenAddress);
 
-    // function setPeer(uint32 _eid, bytes32 _peer)
-
     const peerAddress = ethers.utils.zeroPad(WrappedForLootAndGloryAddress, 32);
     const peerChainId = EndpointId.POLYGON_V2_MAINNET;
 
