@@ -5,20 +5,15 @@ import '@layerzerolabs/toolbox-hardhat'
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 async function main() {
-    const WrappedForLootAndGloryAddress = "0x025296871C7767dd0DA6397484bA0bF7809D54e1";
+    const WrappedForLootAndGloryAddress = "0xc83c963785B2dAB7b9Ae7bD71B3a7617940E4047";
     const ForLootAndGloryTokenAddress = "0x264d55eABBF7423A0C7146DD38708474c7E1aF7f";
-    const ExistingTokenAddress = "0x997028Fe7173b8861f707DCb64EcAc90088003a0";
-    const ExistingTokenFactory = await hre.ethers.getContractFactory("ForLootAndGloryToken");
-    const WrappedForLootAndGloryFactory = await hre.ethers.getContractFactory("WrappedForLootAndGlory");
     const ForLootAndGloryTokenFactory = await hre.ethers.getContractFactory("ForLootAndGloryToken");
-    const WrappedForLootAndGlory = WrappedForLootAndGloryFactory.attach(WrappedForLootAndGloryAddress);
     const ForLootAndGloryToken = ForLootAndGloryTokenFactory.attach(ForLootAndGloryTokenAddress);
-    const ExistingToken = ExistingTokenFactory.attach(ExistingTokenAddress);
 
     // function setPeer(uint32 _eid, bytes32 _peer)
 
     const peerAddress = ethers.utils.zeroPad(WrappedForLootAndGloryAddress, 32);
-    const peerChainId = EndpointId.SEPOLIA_V2_TESTNET;
+    const peerChainId = EndpointId.POLYGON_V2_MAINNET;
 
     console.log(`Setting peer on ${peerChainId} to ${peerAddress}`);
     await ForLootAndGloryToken.setPeer(peerChainId, peerAddress);

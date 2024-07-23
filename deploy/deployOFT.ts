@@ -1,10 +1,9 @@
 import hre from 'hardhat'
 import assert from 'assert'
-import { type DeployFunction } from 'hardhat-deploy/types'
 
 const contractNameEuropa = 'ForLootAndGloryToken'
-const contractNameSepolia = 'WrappedForLootAndGlory'
-const existingContractAddress = '0x997028Fe7173b8861f707DCb64EcAc90088003a0'
+const contractNamePolygon = 'WrappedForLootAndGlory'
+const existingContractAddress = '0x9111D6446Ac5b88A84cf06425c6286658368542F'
 async function main() {
     const { getNamedAccounts, deployments } = hre
     const { deploy } = deployments
@@ -13,37 +12,49 @@ async function main() {
     let contractName;
     console.log(`Network: ${hre.network.name}`)
     console.log(`Deployer: ${deployer}`)
-    if (hre.network.name === 'europaTestnet') {
+    if (hre.network.name === 'europa') {
         contractName = contractNameEuropa
         const endpointV2Deployment = await hre.deployments.get('EndpointV2')
         const { address } = await deploy(contractName, {
             from: deployer,
             args: [
-                'ForLootAndGlory', // name
-                'FLAG', // symbol
-                endpointV2Deployment.address, // LayerZero's EndpointV2 address
-                deployer, // owner
+                'ForLootAndGlory',
+                'FLAG',
+                endpointV2Deployment.address,
+                deployer,
             ],
             log: true,
-            skipIfAlreadyDeployed: false,
+            skipIfAlreadyDeployed: true,
             gasLimit: 3_000_000
         })
         console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
-    } else if (hre.network.name === 'sepolia') {
-        contractName = contractNameSepolia
+    } else if (hre.network.name === 'polygon') {
+        contractName = contractNamePolygon
         const endpointV2Deployment = await hre.deployments.get('EndpointV2')
-        const { address } = await deploy(contractName, {
+        const WrappepOFTAdapter = await deploy(contractName, {
             from: deployer,
             args: [
-                existingContractAddress, // existing contract address
-                endpointV2Deployment.address, // LayerZero's EndpointV2 address
-                deployer, // owner
+                existingContractAddress,
+                endpointV2Deployment.address,
+                deployer,
             ],
             log: true,
-            skipIfAlreadyDeployed: false,
+            skipIfAlreadyDeployed: true,
             gasLimit: 3_000_000
         })
-        console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
+        console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${WrappepOFTAdapter.address}`)
+        // sleep 10 seconds
+        console.log('verify contract')
+        await new Promise(resolve => setTimeout(resolve, 10000))
+        await hre.run("verify:verify", {
+            address: WrappepOFTAdapter.address,
+            constructorArguments: [
+                existingContractAddress,
+                endpointV2Deployment.address,
+                deployer,
+            ],
+        });
+        console.log('contract verified')
     }
 }
 

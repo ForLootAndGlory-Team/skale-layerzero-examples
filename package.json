@@ -5,22 +5,23 @@
   "license": "MIT",
   "scripts": {
     "compile": "hardhat compile",
-    "deploy": "npx hardhat run ./deploy/deployOFT.ts --network sepolia &&  npx hardhat run ./deploy/deployOFT.ts --network europaTestnet",
-    "peer": "npx hardhat run ./scripts/peerSepolia.ts --network sepolia && npx hardhat run ./scripts/peerEuropa.ts --network europaTestnet && npx hardhat run ./scripts/bridge.ts --network sepolia"
+    "polygon": "npx hardhat run ./deploy/deployOFT.ts --network polygon",
+    "europa": "npx hardhat run ./deploy/deployOFT.ts --network europa",
+    "peer": "npx hardhat run ./scripts/peerPolygon.ts --network polygon && npx hardhat run ./scripts/peerEuropa.ts --network europa"
   },
   "resolutions": {
     "@openzeppelin/contracts": "^5.0.1",
     "ethers": "^5.7.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
-    "@layerzerolabs/eslint-config-next": "^2.3.16",
-    "@layerzerolabs/lz-definitions": "~2.3.16",
-    "@layerzerolabs/lz-evm-messagelib-v2": "~2.3.16",
-    "@layerzerolabs/lz-evm-oapp-v2": "~2.3.16",
-    "@layerzerolabs/lz-evm-protocol-v2": "~2.3.16",
-    "@layerzerolabs/lz-evm-v1-0.7": "~2.3.16",
-    "@layerzerolabs/lz-v2-utilities": "~2.3.16",
+    "@babel/core": "^7.24.9",
+    "@layerzerolabs/eslint-config-next": "^2.3.31",
+    "@layerzerolabs/lz-definitions": "~2.3.31",
+    "@layerzerolabs/lz-evm-messagelib-v2": "~2.3.31",
+    "@layerzerolabs/lz-evm-oapp-v2": "~2.3.31",
+    "@layerzerolabs/lz-evm-protocol-v2": "~2.3.31",
+    "@layerzerolabs/lz-evm-v1-0.7": "~2.3.31",
+    "@layerzerolabs/lz-v2-utilities": "~2.3.31",
     "@nomicfoundation/hardhat-ethers": "^3.0.6",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "@nomiclabs/hardhat-etherscan": "^3.1.8",
@@ -28,34 +29,34 @@
     "@openzeppelin/contracts-upgradeable": "^5.0.2",
     "@rushstack/eslint-patch": "^1.10.3",
     "@types/chai": "^4.3.16",
-    "@types/mocha": "^10.0.6",
+    "@types/mocha": "^10.0.7",
     "chai": "^5.1.1",
     "dotenv": "^16.4.5",
-    "ethers": "^6.12.1",
-    "hardhat": "^2.22.4",
+    "ethers": "^6.13.1",
+    "hardhat": "^2.22.6",
     "hardhat-contract-sizer": "^2.10.0",
     "hardhat-deploy": "^0.12.4",
-    "mocha": "^10.4.0",
-    "prettier": "^3.2.5",
+    "mocha": "^10.7.0",
+    "prettier": "^3.3.3",
     "solhint": "^5.0.1",
     "solidity-bytes-utils": "^0.8.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "engines": {
     "node": ">=18.16.0"
   },
   "overrides": {
     "@openzeppelin/contracts": "^5.0.2",
-    "ethers": "^6.12.1"
+    "ethers": "^6.13.1"
   },
   "pnpm": {
     "overrides": {
       "@openzeppelin/contracts": "^5.0.2",
-      "ethers": "^6.12.1"
+      "ethers": "^6.13.1"
     }
   },
   "dependencies": {
-    "@layerzerolabs/toolbox-hardhat": "^0.2.24"
+    "@layerzerolabs/toolbox-hardhat": "^0.2.40"
   }
 }
