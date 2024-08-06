@@ -7,8 +7,8 @@ import { EndpointId } from '@layerzerolabs/lz-definitions';
 
 async function main() {
     // Charger ou déployer vos contrats ici. Pour cet exemple, nous allons simplement charger des contrats déjà déployés.
-    const WrappedForLootAndGloryAddress = "0x025296871C7767dd0DA6397484bA0bF7809D54e1";
-    const ForLootAndGloryTokenAddress = "0x264d55eABBF7423A0C7146DD38708474c7E1aF7f";
+    const WrappedForLootAndGloryAddress = "0xc83c963785B2dAB7b9Ae7bD71B3a7617940E4047";
+    const ForLootAndGloryTokenAddress = "0xcdF030a3E65f917DFa8d74555A64a5eC5303c88e";
     const ExistingTokenAddress = "0x997028Fe7173b8861f707DCb64EcAc90088003a0";
     const ExistingTokenFactory = await hre.ethers.getContractFactory("ForLootAndGlory");
     const WrappedForLootAndGloryFactory = await hre.ethers.getContractFactory("WrappedForLootAndGlory");

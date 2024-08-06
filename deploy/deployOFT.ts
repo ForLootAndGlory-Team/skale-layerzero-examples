@@ -25,7 +25,7 @@ async function main() {
             ],
             log: true,
             skipIfAlreadyDeployed: true,
-            gasLimit: 3_000_000
+            gasLimit: 100_000_000
         })
         console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
         console.log('verify contract')
@@ -51,7 +51,7 @@ async function main() {
             ],
             log: true,
             skipIfAlreadyDeployed: true,
-            gasLimit: 3_000_000
+            gasLimit: 50_000_000
         })
         console.log(`Deployed contract: ${contractName}, network: ${hre.network.name}, address: ${address}`)
         // sleep 10 seconds

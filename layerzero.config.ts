@@ -6,23 +6,8 @@ const polygonContract = {
     contractName: 'WrappedForLootAndGlory',
 }
 
-const sepoliaContract = {
-    eid: EndpointId.SEPOLIA_V2_TESTNET,
-    contractName: 'ForLootAndGloryToken'
-}
-
 const skaleEuropaContract = {
     eid: EndpointId.SKALE_V2_MAINNET,
-    contractName: 'ForLootAndGloryToken'
-}
-
-const skaleEuropaTestnetContract = {
-    eid: EndpointId.SKALE_V2_TESTNET,
-    contractName: 'ForLootAndGloryToken'
-}
-
-const arbitrumContract = {
-    eid: EndpointId.ARBITRUM_V2_MAINNET,
     contractName: 'ForLootAndGloryToken'
 }
 
@@ -35,49 +20,52 @@ export default {
         {
             contract: skaleEuropaContract
         },
-        {
-            contract: arbitrumContract
-        },
-        {
-            contract: sepoliaContract
-        },
-        {
-            contract: skaleEuropaTestnetContract
-        }
     ],
     connections: [
         {
-            from: polygonContract,
-            to: skaleEuropaContract
-        },
-        {
             from: skaleEuropaContract,
-            to: polygonContract
+            to: polygonContract,
+            config: {
+                sendConfig: {
+                    ulnConfig: {
+                        confirmations: BigInt(10),
+                        requiredDVNs: [
+                            "0xce8358bc28dd8296Ce8cAF1CD2b44787abd65887"
+                        ]
+                    },
+                },
+                receiveConfig: {
+                    ulnConfig: {
+                        confirmations: BigInt(10),
+                        requiredDVNs: [
+                            "0xce8358bc28dd8296Ce8cAF1CD2b44787abd65887"
+                        ]
+                    }
+                },
+            },
+            
         },
         {
             from: polygonContract,
-            to: arbitrumContract
+            to: skaleEuropaContract,
+            config: {
+                sendConfig: {
+                    ulnConfig: {
+                        confirmations: BigInt(10),
+                        requiredDVNs: [
+                            "0x23de2fe932d9043291f870324b74f820e11dc81a"
+                        ]
+                    },
+                },
+                receiveConfig: {
+                    ulnConfig: {
+                        confirmations: BigInt(10),
+                        requiredDVNs: [
+                            "0x23de2fe932d9043291f870324b74f820e11dc81a"
+                        ]
+                    },
+                },
+            }
         },
-        {
-            from: arbitrumContract,
-            to: polygonContract
-        },
-        {
-            from: skaleEuropaContract,
-            to: arbitrumContract
-        },
-        {
-            from: arbitrumContract,
-            to: skaleEuropaContract
-        },
-        {
-            from: sepoliaContract,
-            to: skaleEuropaTestnetContract
-        },
-        {
-            from: skaleEuropaTestnetContract,
-            to: sepoliaContract
-        },
-
     ],
 }

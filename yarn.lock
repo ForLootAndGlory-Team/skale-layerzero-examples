@@ -744,10 +744,10 @@
     exponential-backoff "~3.1.1"
     js-yaml "~4.1.0"
 
-"@layerzerolabs/eslint-config-next@^2.3.31":
-  version "2.3.31"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/eslint-config-next/-/eslint-config-next-2.3.31.tgz#b13b6fe55993f1a285d16d2d170991f2dde0adaf"
-  integrity sha512-M0EsYp4ULXkZR7TNVu3Vg1Xj5yKujuYd8L74FQ10eZe1jAw8zlHyEtMi8RznUIAIZWOOp/7MOp+qWsGt5WLUqQ==
+"@layerzerolabs/eslint-config-next@^2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/eslint-config-next/-/eslint-config-next-2.3.34.tgz#34820b169579a2e44b98d6124e1b94b9e1d4d7e4"
+  integrity sha512-2/vfOjQIwxw1rXzUv2i9Qio5/s/G8PC4K3oq/IPaaGmgouw+3Qeu+4oVfEeHu829Q31QzlivZ6wAfAAJ7zODzA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^7.5.0"
     "@typescript-eslint/parser" "^7.5.0"
@@ -786,27 +786,34 @@
     table "~6.8.2"
     winston "^3.11.0"
 
-"@layerzerolabs/lz-definitions@^2.3.25", "@layerzerolabs/lz-definitions@~2.3.31":
+"@layerzerolabs/lz-definitions@^2.3.25":
   version "2.3.31"
   resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.3.31.tgz#73a3d5b6580d977434cbd10492c7bca05ff20a27"
   integrity sha512-UBtnIhdny7frTApjwDhtmslXKdmKxST0BsVpBmUrYmNP76bJ69A7H2lawBHQokmDm63DulMiao2TthPN32ss4g==
   dependencies:
     tiny-invariant "^1.3.1"
 
-"@layerzerolabs/lz-evm-messagelib-v2@~2.3.31":
-  version "2.3.31"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-messagelib-v2/-/lz-evm-messagelib-v2-2.3.31.tgz#f066103c1ca310ea9c3c42e43b5c6cbdfa29157f"
-  integrity sha512-SeGe5naSyo1GZVpO4qfAWf3BQ/CQ5otx5NuPrH7Gd4GoIBjuNxZ/FOgzvoT5aKXdISEMD23mAwsGRwbhnDdSTw==
+"@layerzerolabs/lz-definitions@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.3.34.tgz#861b343a5e8d795d969731ae7495f68141dd4795"
+  integrity sha512-07VzZyJkSmAZDsXORPD5Z1xQcboAUReO30GGcyBMmqPKiylDHUVhouxZB8Yqe9kGW4jKneXu0Gn0ZTpyXvfE5Q==
+  dependencies:
+    tiny-invariant "^1.3.1"
 
-"@layerzerolabs/lz-evm-oapp-v2@~2.3.31":
-  version "2.3.31"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-oapp-v2/-/lz-evm-oapp-v2-2.3.31.tgz#7cadb8afc966f021518aea67971a22badf43575c"
-  integrity sha512-rDI//1cntCkyBaWLkzeSj5MoqZlWvVBbZ/kY9+ZHxHvDh6e3XPr7Trc1ez2MEWNYbxhDZOYCDXEE0PjHDyC7KA==
+"@layerzerolabs/lz-evm-messagelib-v2@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-messagelib-v2/-/lz-evm-messagelib-v2-2.3.34.tgz#3c742e03d80f1458c628bcd97442014956a89901"
+  integrity sha512-TJo3T15NQSuly3l4Dhhu4bB6expJ/IQzdQ+91C1qJ6v1aYl8ddh11ruk/N8FfgYrGRx5lZQVcgPIlpFwQxzetA==
 
-"@layerzerolabs/lz-evm-protocol-v2@~2.3.31":
-  version "2.3.31"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-protocol-v2/-/lz-evm-protocol-v2-2.3.31.tgz#da49cc007180f3ac406a53c277040a0ddad7b540"
-  integrity sha512-SOIew2g94a3fg+Lozbf00nKIkB4OiAKQUvGdngWoSlLAPJ3GV6noi9V8WYqTjrW2ceH67U2igsIxOklt1Nq6qA==
+"@layerzerolabs/lz-evm-oapp-v2@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-oapp-v2/-/lz-evm-oapp-v2-2.3.34.tgz#c66ff1359e5066836b44f7ed02ee3cb6176b2b87"
+  integrity sha512-f7GaBFP3HXnegejUYGtPnuETwcnogl+J36krgNa1qe6Ucy2tUu21CE882THITUi/apbO4TStFbaASAFUh64asg==
+
+"@layerzerolabs/lz-evm-protocol-v2@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-protocol-v2/-/lz-evm-protocol-v2-2.3.34.tgz#03e953e3436926539c08b7c96cd7070b6ea95a82"
+  integrity sha512-8IK4MtGbzPNGN9nOvXgEHcuVt92s8L07R9A6xgrhEfkTbEoZPI3lMNoXJVoA4V5C1NWyrKOelyL8EeiPGU0c5A==
 
 "@layerzerolabs/lz-evm-sdk-v1@^2.3.25":
   version "2.3.31"
@@ -826,15 +833,29 @@
     "@layerzerolabs/evm-sdks-core" "^2.3.31"
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-evm-v1-0.7@~2.3.31":
-  version "2.3.31"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-v1-0.7/-/lz-evm-v1-0.7-2.3.31.tgz#968d02718cc418adfc087d62493d53a2aa5306fc"
-  integrity sha512-wXRQoj3HgHEMOmvx17ZANA8AmTUUq88bV/AVdy4OF0965ing2saFVErVigjJ1f73F9trX34vcPQqhRfB9bQ+tg==
+"@layerzerolabs/lz-evm-v1-0.7@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-v1-0.7/-/lz-evm-v1-0.7-2.3.34.tgz#7784dab6d69f32060724cc6ff8c41e805ea177a3"
+  integrity sha512-jijihmgrF/39I9CCaMjnzQSLSMDgLfenBZ3c4fkXWItgyfB4wuW6YjMMdMRb51b5LfIO/7wvgqe16qteyrc2Jw==
 
-"@layerzerolabs/lz-v2-utilities@^2.3.25", "@layerzerolabs/lz-v2-utilities@~2.3.31":
+"@layerzerolabs/lz-v2-utilities@^2.3.25":
   version "2.3.31"
   resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.3.31.tgz#7a4ce459556f84c95fc223af87814c3bc88efa10"
   integrity sha512-egp6rEfmU9oOhrWziwTsjXDFFO21fwJ/yrm2CN5Cxg7ofa0yspA0QG0hnszK1TL6HfkLaYBMGOu+nbbidl/yjQ==
+  dependencies:
+    "@ethersproject/abi" "^5.7.0"
+    "@ethersproject/address" "^5.7.0"
+    "@ethersproject/bignumber" "^5.7.0"
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/keccak256" "^5.7.0"
+    "@ethersproject/solidity" "^5.7.0"
+    bs58 "^5.0.0"
+    tiny-invariant "^1.3.1"
+
+"@layerzerolabs/lz-v2-utilities@~2.3.34":
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.3.34.tgz#74376c69ccf0d89efedaf88a3d448bcfe9f7a453"
+  integrity sha512-S7YKH5/O27VtnHP2o1EjbsUKUNubxh/Wpix4hyLYkDaA5YyRUUO2BdeqLoqPQBEbfb00H1BrVSYY6h/2ar7suQ==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/address" "^5.7.0"

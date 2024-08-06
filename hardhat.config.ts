@@ -60,22 +60,20 @@ const config: HardhatUserConfig = {
             url: "https://mainnet.skalenodes.com/v1/elated-tan-skat",
             accounts,
         },
-        sepolia: {
-            eid: EndpointId.SEPOLIA_V2_TESTNET,
-            url: 'https://1rpc.io/sepolia',
-            accounts,
-            gasPrice: 20e9,
-            gas: 25e6,
-        },
-        europaTestnet: {
-            eid: EndpointId.SKALE_V2_TESTNET,
-            url: 'https://testnet.skalenodes.com/v1/juicy-low-small-testnet',
-            accounts,
-        },
     },
     etherscan: {
         // Votre clé API Etherscan
         apiKey: process.env.POLYGONSCAN_API_KEY,
+        customChains: [
+            {
+              network: "europa",
+              chainId: 2046399126,
+              urls: {
+                apiURL: "https://elated-tan-skat.explorer.mainnet.skalenodes.com/api",
+                browserURL: "https://elated-tan-skat.explorer.mainnet.skalenodes.com"
+              }
+            }
+          ]
     },
     namedAccounts: {
         deployer: {
